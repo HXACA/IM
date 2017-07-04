@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.minions.im">
+    <!-- Required -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:name=".IMApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Light.NoTitleBar">
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1146170627115734#test" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="MKhHkA2mvESq9vTkmR6ik33kE5wQpxuG"/>
+        <meta-data android:name="Mob-AppKey" android:value="1f14f32370078"/>
+        <meta-data android:name="Mob-AppSecret" android:value="b033107c3030b62eb3abd6c0fdd3d189"/>
+        <!-- 定位 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+        </service>
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.mob.tools.MobUIShell" />
+        <activity android:name=".activity.MainActivity" >
+        </activity>
+        <activity
+            android:name=".activity.BaseActivity"
+            android:label="@string/title_activity_base" />
+        <activity
+            android:name=".activity.LoginActivty"
+            android:label="@string/title_activity_login" android:launchMode="singleTask" />
+        <activity android:name=".activity.RegisterActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.SplashActivity" android:launchMode="singleTask">
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+        </activity>
+        <activity android:name=".activity.VIPActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.QQMoneyActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.DressUpActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.SaveActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.MyPhotoActivity" android:launchMode="singleTask"/>
+        <activity android:name=".activity.MyFileActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.ChatActivity" android:launchMode="singleTask"></activity>
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name="com.hyphenate.easeui.ui.VideoCallActivity" android:launchMode="singleTask"></activity>
+        <activity android:name="com.hyphenate.easeui.ui.CallActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.AddFriendActivity"  android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.SearchFriendActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.friendAskActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.GroupActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.BuildActivity" android:launchMode="singleTask"></activity>
+        <activity android:name="com.GroupDetailActivity" android:launchMode="singleTask"></activity>
+        <activity android:name="com.GroupControl" android:launchMode="singleTask"></activity>
+
+    </application>
+
+</manifest>

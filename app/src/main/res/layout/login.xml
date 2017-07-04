@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.minions.im.activity.CustomVideoView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/own"
+        android:id="@+id/videoView" />
+
+    <TextView
+        android:text="忘记密码？"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_forget"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/button"
+        android:textColor="@color/white"
+        android:background="@null"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignLeft="@+id/button" />
+
+    <TextView
+        android:text="新用户注册"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_forget"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/white"
+        android:layout_alignEnd="@+id/button"
+        android:id="@+id/user_register"
+        android:layout_alignRight="@+id/button" />
+
+    <com.example.minions.im.activity.LineEditText
+        android:layout_width="360dp"
+        android:layout_height="30dp"
+        android:inputType="textPersonName"
+        android:hint="手机号/邮箱/用户名"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/lightgreen"
+        android:background="@null"
+        android:id="@+id/user_name"
+        android:layout_weight="1"
+        android:layout_marginTop="122dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <com.example.minions.im.activity.LineEditText
+        android:layout_width="360dp"
+        android:layout_height="30dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/user_password"
+        android:hint="密码"
+        android:textColorHint="@color/white"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:background="@null"
+        android:textColor="@color/white"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/user_name"
+        android:layout_alignStart="@+id/user_name"
+        android:layout_alignLeft="@+id/user_name" />
+
+    <Button
+        android:text="登录"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/button"
+        android:background="@color/gray"
+        android:textColor="@color/white"
+        android:layout_below="@+id/user_password"
+        android:layout_alignStart="@+id/user_password"
+        android:layout_alignLeft="@+id/user_password" />
+
+
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--自定义的背景视频-->
+    <com.example.minions.im.activity.CustomVideoView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/own"
+        android:id="@+id/videoView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="注册"
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_register"
+        android:background="@color/gray"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edit_code"
+        android:layout_centerHorizontal="true" />
+<!--自定义的下划线EditText-->
+    <com.example.minions.im.activity.LineEditText
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:inputType="textPersonName"
+        android:hint="你的手机号"
+        android:background="@null"
+        android:textColorHint="@color/gray"
+        android:textCursorDrawable="@drawable/edit_cursor_color_gray"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:id="@+id/edit_phone"
+        android:layout_weight="1"
+        android:layout_marginTop="96dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/edit_code"
+        android:layout_alignLeft="@+id/edit_code"
+        android:layout_alignRight="@+id/edit_pass"
+        android:layout_alignEnd="@+id/edit_pass" />
+    <ImageButton
+        android:id="@+id/see"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/see"
+        android:layout_alignBottom="@+id/edit_pass"
+        android:layout_toRightOf="@+id/btn_register" />
+    <com.example.minions.im.activity.LineEditText
+        android:id="@+id/edit_pass"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:ems="10"
+        android:hint="你的密码"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textCursorDrawable="@drawable/edit_cursor_color_gray"
+        android:layout_marginBottom="28dp"
+        android:layout_above="@+id/re_edit_pass"
+        android:layout_alignLeft="@+id/re_edit_pass"
+        android:layout_alignStart="@+id/re_edit_pass"
+        android:layout_toLeftOf="@+id/see"
+        android:layout_toStartOf="@+id/see" />
+    <com.example.minions.im.activity.LineEditText
+        android:id="@+id/re_edit_pass"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@null"
+        android:ems="10"
+        android:hint="重复你的密码"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textCursorDrawable="@drawable/edit_cursor_color_gray"
+        android:layout_above="@+id/btn_getcord"
+        android:layout_alignLeft="@+id/edit_code"
+        android:layout_alignStart="@+id/edit_code"
+        android:layout_marginBottom="39dp"
+        android:layout_toLeftOf="@+id/see"
+        android:layout_toStartOf="@+id/see" />
+    <com.example.minions.im.activity.LineEditText
+        android:layout_width="210dp"
+        android:background="@null"
+        android:layout_height="45dp"
+        android:inputType="textPersonName"
+        android:textCursorDrawable="@drawable/edit_cursor_color_gray"
+        android:hint="请输入验证码"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:ems="10"
+        android:layout_marginTop="172dp"
+        android:id="@+id/edit_code"
+        android:layout_below="@+id/edit_phone"
+        android:layout_alignLeft="@+id/btn_register"
+        android:layout_alignStart="@+id/btn_register" />
+
+    <Button
+        android:text="获取验证码"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_getcord"
+        android:background="@color/gray"
+        android:textColor="@color/white"
+        android:layout_above="@+id/btn_register"
+        android:layout_toRightOf="@+id/edit_code"
+        android:layout_toEndOf="@+id/edit_code" />
+</RelativeLayout>
