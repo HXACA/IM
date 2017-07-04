@@ -1131,11 +1131,11 @@ int id text 0x7f0c0082
 int id text2 0x7f0c00e1
 int id textSpacerNoButtons 0x7f0c0038
 int id textView 0x7f0c007e
-int id textView1 0x7f0c0072
+int id textView1 0x7f0c0070
 int id textView10 0x7f0c0069
 int id textView12 0x7f0c006b
 int id textView15 0x7f0c006e
-int id textView2 0x7f0c0070
+int id textView2 0x7f0c0072
 int id textView3 0x7f0c0074
 int id textView4 0x7f0c0076
 int id textView5 0x7f0c0078

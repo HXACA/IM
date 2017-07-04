@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -48,6 +49,11 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
     private String toChatName;
     private TextView groupName;
     private Switch Noshow;
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private TextView textView4;
+    private Button dissolve;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,18 +74,34 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
                                 GroupShutup.setVisibility(View.VISIBLE);
                                 GroupDesc.setVisibility(View.VISIBLE);
                                 GroupMangers.setVisibility(View.VISIBLE);
+                                textView4.setVisibility(View.VISIBLE);
+                                textView2.setVisibility(View.VISIBLE);
+                                textView3.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+                    }else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Noshow.setVisibility(View.VISIBLE);
+                                textView1.setVisibility(View.VISIBLE);
                             }
                         });
                     }
                 } catch (HyphenateException e) {
                     e.printStackTrace();
                 }
-
             }
         }).start();
         initListenter();
         EMGroup now = EMClient.getInstance().groupManager().getGroup(toChatName);
         groupName.setText(now.getGroupName());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void initListenter() {
@@ -92,8 +114,39 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Toast.makeText(GroupDetailActivity.this, "xixi", Toast.LENGTH_SHORT).show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                EMClient.getInstance().groupManager().blockGroupMessage(toChatName);
+                                showResult("已屏蔽！");
+                            } catch (HyphenateException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }else{
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                EMClient.getInstance().groupManager().unblockGroupMessage(toChatName);
+                                showResult("已解除屏蔽！");
+                            } catch (HyphenateException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 }
+            }
+        });
+    }
+
+    private void showResult(final String s) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(GroupDetailActivity.this,s, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -107,9 +160,18 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
         GroupShutup = (ImageButton) findViewById(R.id.btn_speak);
         GroupDesc = (ImageButton) findViewById(R.id.btn_describe);
         GroupMangers = (ImageButton) findViewById(R.id.btn_manager);
+        textView1 = (TextView) findViewById(R.id.textView1);
+        textView2 = (TextView) findViewById(R.id.textView2);
+        textView3 = (TextView) findViewById(R.id.textView3);
+        textView4 = (TextView) findViewById(R.id.textView4);
         GroupShutup.setVisibility(View.INVISIBLE);
         GroupDesc.setVisibility(View.INVISIBLE);
         GroupMangers.setVisibility(View.INVISIBLE);
+        textView1.setVisibility(View.INVISIBLE);
+        textView2.setVisibility(View.INVISIBLE);
+        textView3.setVisibility(View.INVISIBLE);
+        textView4.setVisibility(View.INVISIBLE);
+        Noshow.setVisibility(View.INVISIBLE);
     }
 
     @Override

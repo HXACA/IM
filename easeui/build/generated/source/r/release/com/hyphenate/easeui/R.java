@@ -2509,11 +2509,11 @@ containing a value of this type.
         public static int text2=0x7f0c00e1;
         public static int textSpacerNoButtons=0x7f0c0038;
         public static int textView=0x7f0c007e;
-        public static int textView1=0x7f0c0072;
+        public static int textView1=0x7f0c0070;
         public static int textView10=0x7f0c0069;
         public static int textView12=0x7f0c006b;
         public static int textView15=0x7f0c006e;
-        public static int textView2=0x7f0c0070;
+        public static int textView2=0x7f0c0072;
         public static int textView3=0x7f0c0074;
         public static int textView4=0x7f0c0076;
         public static int textView5=0x7f0c0078;

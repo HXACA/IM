@@ -132,7 +132,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/group_type"
                 android:layout_marginRight="50dp"
-                android:layout_weight="3"
+                android:layout_weight="2"
+                android:textOff=""
+                android:textOn=""
                 android:thumb="@drawable/thumb"
                 android:track="@drawable/switchtrack"/>
         </LinearLayout>
@@ -152,13 +154,15 @@
                 android:layout_weight="1" />
 
             <Switch
+                android:id="@+id/group_invite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/group_invite"
                 android:layout_marginRight="50dp"
-                android:layout_weight="3"
+                android:layout_weight="2"
+                android:textOff=""
+                android:textOn=""
                 android:thumb="@drawable/thumb"
-                android:track="@drawable/switchtrack"/>
+                android:track="@drawable/switchtrack" />
         </LinearLayout>
     </LinearLayout>
 
