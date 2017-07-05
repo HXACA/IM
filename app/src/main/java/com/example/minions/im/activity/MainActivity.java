@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minions.im.R;
+import com.example.minions.im.adapter.friendAsk;
 import com.example.minions.im.fragment.CallFragment;
 import com.example.minions.im.fragment.ContactFragment;
 import com.example.minions.im.fragment.DynamicFragment;
@@ -39,12 +40,15 @@ import com.example.minions.im.view.AddPupopWindow;
 import com.example.minions.im.view.CircleImageView;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.ui.EaseGroupRemoveListener;
 import com.hyphenate.easeui.ui.VideoCallActivity;
 import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import edu.zx.slidingmenu.SlidingMenu;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -122,6 +126,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
+        EMClient.getInstance().groupManager().addGroupChangeListener(new EaseGroupRemoveListener() {
+            @Override
+            public void onUserRemoved(String s, String s1) {
+
+            }
+
+            @Override
+            public void onGroupDestroyed(String s, String s1) {
+                    Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -194,6 +213,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                                     }
                                     cursor.moveToNext();
                                 }
+                                friendAsk ask = new friendAsk(EMClient.getInstance().getCurrentUser(),username,reason,0);
+                                ask.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
+
+                                    }
+                                });
                                 if(flag==0){
                                     Toast.makeText(getApplication(), "你收到了"+username+"的好友申请", Toast.LENGTH_SHORT).show();
                                     ContentValues cv = new ContentValues();

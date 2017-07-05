@@ -16,6 +16,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.List;
@@ -45,10 +46,19 @@ import java.util.List;
 public class GroupActivity extends Activity {
     private TextView build;
     private ListView lv;
+    private List<EMGroup> grouplist;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+        EaseTitleBar titleBar = (EaseTitleBar) findViewById(R.id.group_title);
+        titleBar.setTitle("群列表");
+        titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         build = (TextView) findViewById(R.id.buildgroup);
         build.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +79,7 @@ public class GroupActivity extends Activity {
             }
         }).start();
         //从本地加载群组列表
-        final List<EMGroup> grouplist = EMClient.getInstance().groupManager().getAllGroups();
+        grouplist = EMClient.getInstance().groupManager().getAllGroups();
         Log.d("Group", String.valueOf(grouplist.size()));
         lv = (ListView) findViewById(R.id.AllGroup);
         GroupAdapter adapter = new GroupAdapter(GroupActivity.this,R.layout.group_item,grouplist);
@@ -87,4 +97,10 @@ public class GroupActivity extends Activity {
         });
     }
 
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        onCreate(null);
+    }
 }

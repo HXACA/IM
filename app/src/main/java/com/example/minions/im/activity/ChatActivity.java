@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.example.minions.im.R;
+import com.example.minions.im.fragment.newEaseChatFragment;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
@@ -35,7 +36,7 @@ import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
 */
 public class ChatActivity extends FragmentActivity {
     private String mHxid;
-    private EaseChatFragment easeChatFragment;
+    private EaseChatFragment newEaseChatFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class ChatActivity extends FragmentActivity {
     }
 
     private void initListener() {
-        easeChatFragment.setChatFragmentListener(new EaseChatFragment.EaseChatFragmentHelper() {
+        newEaseChatFragment.setChatFragmentListener(new EaseChatFragment.EaseChatFragmentHelper() {
             @Override
             public void onSetMessageAttributes(EMMessage message) {
 
@@ -96,12 +97,12 @@ public class ChatActivity extends FragmentActivity {
 
     private void initData() {
         //创建一个回话的fragment
-        easeChatFragment = new EaseChatFragment();
+        newEaseChatFragment = new newEaseChatFragment();
         mHxid = getIntent().getStringExtra(EaseConstant.EXTRA_USER_ID);
-        easeChatFragment.setArguments(getIntent().getExtras());
+        newEaseChatFragment.setArguments(getIntent().getExtras());
         /// /替换fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_chat, easeChatFragment).commit();
+        transaction.replace(R.id.fl_chat, newEaseChatFragment).commit();
     }
 
 

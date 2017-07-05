@@ -96,6 +96,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_recording_hint_bg.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_cancel_bg_normal.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_cancel_bg_normal.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_002_cover.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\icon_002_cover.png"
     },
@@ -110,6 +114,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\next.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\next.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_close_bg_selector.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_close_bg_selector.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
@@ -140,8 +148,16 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\icon_012_cover.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_ok_bg_selector.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_ok_bg_selector.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_edit_text_bg.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_edit_text_bg.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_ok_bg_normal.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_ok_bg_normal.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\thumb.xml",
@@ -172,6 +188,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_sidebar_background_pressed.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_wifi_disable.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_wifi_disable.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_cancel_normal_shape.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_cancel_normal_shape.xml"
     },
@@ -184,6 +204,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\file.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_dialog_bg.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_dialog_bg.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\green_track.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\green_track.xml"
     },
@@ -194,6 +218,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chat_image_selector.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chat_image_selector.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_cancel_bg_focused.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_cancel_bg_focused.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
@@ -256,6 +284,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_edit_text_bg.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_cancel_bg_selector.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_cancel_bg_selector.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatting_setmode_voice_btn.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chatting_setmode_voice_btn.xml"
     },
@@ -270,6 +302,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_007.gif",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\icon_007.gif"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_check_selector.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_check_selector.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_textfield_search_material.xml",
@@ -360,6 +396,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\em_chat_file_selector.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_cancel_bg_tap.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_cancel_bg_tap.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
@@ -390,6 +430,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\icon_013.gif",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\icon_013.gif"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_ok_bg_tap.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_ok_bg_tap.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_cancel_pressed_shape.xml",
@@ -506,6 +550,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chat_send_btn_selector.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chat_send_btn_selector.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\bmob_update_button_ok_bg_focused.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable\\bmob_update_button_ok_bg_focused.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_cancel_bj.xml",

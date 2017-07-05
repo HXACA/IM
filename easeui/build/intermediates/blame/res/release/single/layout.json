@@ -60,6 +60,10 @@
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\delete.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\delete.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_showvideo_activity.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\ease_showvideo_activity.xml"
     },
@@ -98,6 +102,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\delete_item.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\delete_item.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
@@ -164,6 +172,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\ease_row_sent_video_call.xml"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\bmob_update_dialog.xml",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\layout\\bmob_update_dialog.xml"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_emojicon.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\ease_widget_emojicon.xml"
     },
@@ -214,6 +226,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_voice_call.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\ease_row_sent_voice_call.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\notice.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\notice.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_bigexpression.xml",
@@ -350,5 +366,9 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_chat_history.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\ease_row_chat_history.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\notice_item.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\layout\\notice_item.xml"
     }
 ]

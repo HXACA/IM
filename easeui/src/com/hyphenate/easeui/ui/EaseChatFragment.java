@@ -57,6 +57,7 @@ import com.hyphenate.easeui.widget.EaseVoiceRecorderView;
 import com.hyphenate.easeui.widget.EaseVoiceRecorderView.EaseVoiceRecorderCallback;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
 import com.hyphenate.easeui.widget.emojicon.EaseEmojiconMenu;
+import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.PathUtil;
 
@@ -120,6 +121,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     private boolean isMessageListInited;
     protected MyItemClickListener extendMenuItemClickListener;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ease_fragment_chat, container, false);
@@ -132,8 +134,34 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //从服务器获取自己加入的和创建的群组列表，此api获取的群组sdk会自动保存到内存和db。
+                try {
+                    List<EMGroup> grouplist = EMClient.getInstance().groupManager().getJoinedGroupsFromServer();//需异步处理
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        //从本地加载群组列表
+        List<EMGroup> grouplist = EMClient.getInstance().groupManager().getAllGroups();
+        boolean flag = false;
+        for(int i=0;i<grouplist.size();i++){
+            if(grouplist.get(i).getGroupId().equals(toChatUsername)){
+                flag=true;
+                break;
+            }
+        }
+        if(!flag)
+            onBackPressed();
     }
 
     /**
@@ -253,6 +281,30 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
                 if (chatType == EaseConstant.CHATTYPE_SINGLE) {
                     emptyHistory();
                 } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //从服务器获取自己加入的和创建的群组列表，此api获取的群组sdk会自动保存到内存和db。
+                            try {
+                                List<EMGroup> grouplist = EMClient.getInstance().groupManager().getJoinedGroupsFromServer();//需异步处理
+                            } catch (HyphenateException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                    //从本地加载群组列表
+                    List<EMGroup> grouplist = EMClient.getInstance().groupManager().getAllGroups();
+                    boolean flag = false;
+                    for(int i=0;i<grouplist.size();i++){
+                        if(grouplist.get(i).getGroupId().equals(toChatUsername)){
+                            flag=true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        Toast.makeText(getActivity(), "该群已被删除！", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
                     Intent intent = new Intent(getActivity(), GroupDetailActivity.class);
                     intent.putExtra("name",toChatUsername);
                     startActivity(intent);
@@ -315,6 +367,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         
         isMessageListInited = true;
     }
+
     
     protected void setListItemClickListener() {
         messageList.setItemClickListener(new EaseChatMessageList.MessageListItemClickListener() {
@@ -1118,5 +1171,4 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
          */
         EaseCustomChatRowProvider onSetCustomChatRowProvider();
     }
-    
 }

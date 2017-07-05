@@ -1,6 +1,8 @@
 package com;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +19,18 @@ import android.widget.Toast;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.R;
+import com.hyphenate.easeui.adapter.NoShowRec;
+import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.hyphenate.exceptions.HyphenateException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /*
                    _ooOoo_
@@ -44,15 +58,11 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
     private ImageButton GroupNotice;
     private ImageButton GroupFile;
     private ImageButton GroupShutup;
-    private ImageButton GroupDesc;
     private ImageButton GroupMangers;
     private String toChatName;
+    private LinearLayout ownerShow;
     private TextView groupName;
     private Switch Noshow;
-    private TextView textView1;
-    private TextView textView2;
-    private TextView textView3;
-    private TextView textView4;
     private Button dissolve;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,21 +81,10 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                GroupShutup.setVisibility(View.VISIBLE);
-                                GroupDesc.setVisibility(View.VISIBLE);
-                                GroupMangers.setVisibility(View.VISIBLE);
-                                textView4.setVisibility(View.VISIBLE);
-                                textView2.setVisibility(View.VISIBLE);
-                                textView3.setVisibility(View.VISIBLE);
-
-                            }
-                        });
-                    }else{
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Noshow.setVisibility(View.VISIBLE);
-                                textView1.setVisibility(View.VISIBLE);
+                        TextView textview = (TextView) findViewById(R.id.textView1);
+                        textview.setVisibility(View.INVISIBLE);
+                         Noshow.setVisibility(View.INVISIBLE);
+                         ownerShow.setVisibility(View.VISIBLE);
                             }
                         });
                     }
@@ -99,16 +98,54 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
         groupName.setText(now.getGroupName());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
-    private void initListenter() {
+    public void initListenter() {
+        dissolve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(GroupDetailActivity.this);
+                builder.setMessage("确定要删除该群吗？");
+                builder.setTitle("删除群");
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    EMClient.getInstance().groupManager().destroyGroup(toChatName);//需异步处理
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(GroupDetailActivity.this, "您已删除该群！", Toast.LENGTH_SHORT).show();
+                                            onBackPressed();
+                                        }
+                                    });
+                                } catch (HyphenateException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                    }
+                });
+                builder.show();
+            }
+        });
         GroupNotice.setOnClickListener(this);
         GroupFile.setOnClickListener(this);
-        GroupShutup.setOnClickListener(this);
-        GroupDesc.setOnClickListener(this);
+        GroupShutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(GroupDetailActivity.this, "该功能暂未开放！", Toast.LENGTH_SHORT).show();
+            }
+        });
         GroupMangers.setOnClickListener(this);
         Noshow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -119,7 +156,7 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
                         public void run() {
                             try {
                                 EMClient.getInstance().groupManager().blockGroupMessage(toChatName);
-                                showResult("已屏蔽！");
+                               search(false);
                             } catch (HyphenateException e) {
                                 e.printStackTrace();
                             }
@@ -131,7 +168,7 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
                         public void run() {
                             try {
                                 EMClient.getInstance().groupManager().unblockGroupMessage(toChatName);
-                                showResult("已解除屏蔽！");
+                                search(true);
                             } catch (HyphenateException e) {
                                 e.printStackTrace();
                             }
@@ -152,26 +189,93 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
     }
 
     private void initView() {
+        EaseTitleBar titleBar = (EaseTitleBar) findViewById(R.id.add_group_title);
+        titleBar.setTitle("群管理");
+        titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         Noshow = (Switch) findViewById(R.id.switch2);
         groupName = (TextView) findViewById(R.id.group_name);
         toChatName=getIntent().getStringExtra("name");
         GroupNotice = (ImageButton) findViewById(R.id.btn_notice);
         GroupFile = (ImageButton) findViewById(R.id.btn_file);
         GroupShutup = (ImageButton) findViewById(R.id.btn_speak);
-        GroupDesc = (ImageButton) findViewById(R.id.btn_describe);
         GroupMangers = (ImageButton) findViewById(R.id.btn_manager);
-        textView1 = (TextView) findViewById(R.id.textView1);
-        textView2 = (TextView) findViewById(R.id.textView2);
-        textView3 = (TextView) findViewById(R.id.textView3);
-        textView4 = (TextView) findViewById(R.id.textView4);
-        GroupShutup.setVisibility(View.INVISIBLE);
-        GroupDesc.setVisibility(View.INVISIBLE);
-        GroupMangers.setVisibility(View.INVISIBLE);
-        textView1.setVisibility(View.INVISIBLE);
-        textView2.setVisibility(View.INVISIBLE);
-        textView3.setVisibility(View.INVISIBLE);
-        textView4.setVisibility(View.INVISIBLE);
-        Noshow.setVisibility(View.INVISIBLE);
+        ownerShow = (LinearLayout) findViewById(R.id.ownershow);
+        ownerShow.setVisibility(View.INVISIBLE);
+        dissolve = (Button) findViewById(R.id.dissolve);
+    }
+
+
+    public void search(final boolean flag){
+        final String username = EMClient.getInstance().getCurrentUser();
+        BmobQuery<NoShowRec>query1=new BmobQuery<>();
+        query1.addWhereEqualTo("groupId",toChatName);
+        BmobQuery<NoShowRec>query2=new BmobQuery<>();
+        query2.addWhereEqualTo("phone",username);
+        List<BmobQuery<NoShowRec>> query = new ArrayList<BmobQuery<NoShowRec>>();
+        query.add(query1);
+        query.add(query2);
+        BmobQuery<NoShowRec>query3 = new BmobQuery<>();
+        query3.and(query);
+        query3.findObjects(new FindListener<NoShowRec>() {
+            @Override
+            public void done(List<NoShowRec> list, BmobException e) {
+                if(e==null && list.size()>0 && flag){
+                   // Toast.makeText(GroupDetailActivity.this, String.valueOf(list.size())+String.valueOf(list.get(1).getPhone()), Toast.LENGTH_SHORT).show();
+                   for(int i=0;i<list.size();i++){
+                       NoShowRec mmm = new NoShowRec(toChatName,username);
+                       mmm.setObjectId(list.get(i).getObjectId());
+                       mmm.delete(new UpdateListener() {
+                           @Override
+                           public void done(BmobException e) {
+
+                           }
+                       });
+                   }
+                }
+                else if(!flag){
+                    NoShowRec msg = new NoShowRec(toChatName,EMClient.getInstance().getCurrentUser());
+                    msg.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String username = EMClient.getInstance().getCurrentUser();
+        BmobQuery<NoShowRec>query1=new BmobQuery<>();
+        query1.addWhereEqualTo("groupId",toChatName);
+        BmobQuery<NoShowRec>query2=new BmobQuery<>();
+        query2.addWhereEqualTo("phone",username);
+        List<BmobQuery<NoShowRec>> query = new ArrayList<BmobQuery<NoShowRec>>();
+        query.add(query1);
+        query.add(query2);
+        BmobQuery<NoShowRec>query3 = new BmobQuery<>();
+        query3.and(query);
+        query3.findObjects(new FindListener<NoShowRec>() {
+            @Override
+            public void done(List<NoShowRec> list, BmobException e) {
+                if(e==null && list.size()>0){
+                    Toast.makeText(GroupDetailActivity.this, "屏蔽中", Toast.LENGTH_SHORT).show();
+                    Noshow.setChecked(true);
+                }
+                else
+                    Noshow.setChecked(false);
+            }
+        });
     }
 
     @Override
@@ -182,13 +286,9 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
        if(id==R.id.btn_notice){
            intent.putExtra("type",1);
        }else if(id == R.id.btn_file){
-           intent.putExtra("type",1);
-       }else if(id == R.id.btn_speak){
-           intent.putExtra("type",1);
-       }else if(id == R.id.btn_describe){
-           intent.putExtra("type",1);
+           intent.putExtra("type",2);
        }else if(id ==R.id.btn_manager){
-           intent.putExtra("type",1);
+           intent.putExtra("type",5);
        }
        startActivity(intent);
     }

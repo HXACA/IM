@@ -14,6 +14,8 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.NetUtils;
 
+import cn.bmob.v3.Bmob;
+
 public class SplashActivity extends Activity {
     private SQLiteDatabase db;
     Boolean isshow = false;
@@ -22,6 +24,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Bmob.initialize(this,"d47808a0512885e466e42f5ff8b0e981");
         createBase();
         if (!EMClient.getInstance().isLoggedInBefore()){
             new Handler().postDelayed(new Runnable() {

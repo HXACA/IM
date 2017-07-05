@@ -1,5 +1,7 @@
 package com.example.minions.im.adapter;
 
+import cn.bmob.v3.BmobObject;
+
 /*
                    _ooOoo_
                   o8888888o
@@ -22,7 +24,7 @@ package com.example.minions.im.adapter;
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          佛祖保佑       永无BUG
 */
-public class friendAsk {
+public class friendAsk extends BmobObject{
     private String toName;
     private String fromName;
     private String dec;

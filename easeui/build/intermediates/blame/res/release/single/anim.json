@@ -8,12 +8,12 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\anim\\push_top_in2.xml"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\anim\\fade_out.xml"
-    },
-    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\anim\\slide_in_from_left.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\anim\\fade_out.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",

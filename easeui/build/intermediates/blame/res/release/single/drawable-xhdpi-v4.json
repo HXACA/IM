@@ -1,23 +1,23 @@
 [
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
-        "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
-    },
-    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_image_normal.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-xhdpi\\ease_chat_image_normal.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_normal.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_normal.png"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_image_pressed.png",
-        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-xhdpi\\ease_chat_image_pressed.png"
-    },
-    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_video_call_self.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-xhdpi\\ease_chat_video_call_self.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_image_pressed.png",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-xhdpi\\ease_chat_image_pressed.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",

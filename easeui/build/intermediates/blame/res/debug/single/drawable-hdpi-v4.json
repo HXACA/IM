@@ -4,6 +4,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ee_24.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_close_bg_tap.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_close_bg_tap.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
@@ -12,16 +16,16 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_record_animate_12.png"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_10.png",
-        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ee_10.png"
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_conversation_selected.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_conversation_selected.png"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png",
-        "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_10.png",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ee_10.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_contact_list_normal.png",
@@ -74,6 +78,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png",
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_on_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_on_holo_light.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_location_msg.9.png",
@@ -224,12 +232,24 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_chatfrom_bg_normal.9.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_close_bg_normal.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_close_bg_normal.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png",
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_off_focused_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_off_focused_holo_light.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_chatto_voice_playing_f3.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_chatto_voice_playing_f3.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_off_pressed_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_off_pressed_holo_light.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_video_play_btn_small_nor.png",
@@ -464,6 +484,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_msg_state_fail_resend.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_off_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_off_holo_light.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_record_animate_06.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_record_animate_06.png"
     },
@@ -592,6 +616,10 @@
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ease_dx_checkbox_gray_on.png"
     },
     {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_on_focused_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_on_focused_holo_light.png"
+    },
+    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_3.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ee_3.png"
     },
@@ -602,6 +630,10 @@
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_9.png",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\res\\drawable-hdpi\\ee_9.png"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\bmob_update_btn_check_on_pressed_holo_light.png",
+        "source": "C:\\Users\\KING\\.android\\build-cache\\b4715ef369cdac62eb845731c0ff1603b22aba2e\\output\\res\\drawable-hdpi-v4\\bmob_update_btn_check_on_pressed_holo_light.png"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
