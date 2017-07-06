@@ -13,4 +13,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"></ListView>
+    <EditText
+        android:id="@+id/noticeEdit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <Button
+        android:text="提交"
+        android:id="@+id/notice_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

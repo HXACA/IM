@@ -2,6 +2,7 @@ package com.example.minions.im.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,12 +55,13 @@ public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter im
             view = createChildrenView();  
         }
 		CircleImageView img = (CircleImageView) view.findViewById(R.id.groupIcon);
-        TextView text = (TextView)view.findViewById(R.id.childto);
-        text.setText(childrenData[groupPosition][childPosition]);
-		text.setOnClickListener(new View.OnClickListener() {
+        TextView text1 = (TextView)view.findViewById(R.id.childto);
+        text1.setText(childrenData[groupPosition][childPosition]);
+		text1.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				Log.d("adapter","haha");
 				Intent intent = new Intent(context, ChatActivity.class);
 				//传递参数
 				EMConversation conversation;

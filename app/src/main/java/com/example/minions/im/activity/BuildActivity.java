@@ -1,6 +1,7 @@
 package com.example.minions.im.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -90,6 +91,8 @@ public class BuildActivity extends Activity{
                         try {
                             EMClient.getInstance().groupManager().createGroup(groupName, desc,new String[]{}, reason, option);
                             showResult("创建成功！");
+                            Intent intent = new Intent(BuildActivity.this,GroupActivity.class);
+                            startActivity(intent);
                         } catch (HyphenateException e) {
                             e.printStackTrace();
                             showResult("创建失败！");

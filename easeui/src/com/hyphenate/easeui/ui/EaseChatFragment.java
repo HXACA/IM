@@ -140,28 +140,31 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     @Override
     public void onStart() {
         super.onStart();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //从服务器获取自己加入的和创建的群组列表，此api获取的群组sdk会自动保存到内存和db。
-                try {
-                    List<EMGroup> grouplist = EMClient.getInstance().groupManager().getJoinedGroupsFromServer();//需异步处理
-                } catch (HyphenateException e) {
-                    e.printStackTrace();
+        if(chatType== EaseConstant.CHATTYPE_GROUP){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //从服务器获取自己加入的和创建的群组列表，此api获取的群组sdk会自动保存到内存和db。
+                    try {
+                        List<EMGroup> grouplist = EMClient.getInstance().groupManager().getJoinedGroupsFromServer();//需异步处理
+                    } catch (HyphenateException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            //从本地加载群组列表
+            List<EMGroup> grouplist = EMClient.getInstance().groupManager().getAllGroups();
+            boolean flag = false;
+            for(int i=0;i<grouplist.size();i++){
+                if(grouplist.get(i).getGroupId().equals(toChatUsername)){
+                    flag=true;
+                    break;
                 }
             }
-        }).start();
-        //从本地加载群组列表
-        List<EMGroup> grouplist = EMClient.getInstance().groupManager().getAllGroups();
-        boolean flag = false;
-        for(int i=0;i<grouplist.size();i++){
-            if(grouplist.get(i).getGroupId().equals(toChatUsername)){
-                flag=true;
-                break;
-            }
+            if(!flag)
+                onBackPressed();
         }
-        if(!flag)
-            onBackPressed();
+
     }
 
     /**

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.minions.im.R;
 import com.example.minions.im.activity.DressUpActivity;
@@ -22,21 +24,50 @@ import com.example.minions.im.activity.SaveActivity;
 import com.example.minions.im.activity.VIPActivity;
 import com.example.minions.im.adapter.SlideMenuAdapter;
 import com.example.minions.im.view.XXListView;
+import com.hyphenate.chat.EMClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.security.SignatureException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by LinYong on 2017/6/30.
  */
 
 public class SlideFragment extends Fragment implements View.OnClickListener {
+    private  String TIANQI_DAILY_WEATHER_URL = "https://api.seniverse.com/v3/weather/now.json";
+    private URL u = null;
+    private StringBuffer sb = null;
+    private String TIANQI_API_SECRET_KEY = "trtovqcfjuw3xndc"; //
+
+    private String TIANQI_API_USER_ID = "U563B16578"; //
     private XXListView lst_slide;
     private RelativeLayout rel_night;
     private LinearLayout lin_slide_wendu_location;
     private RelativeLayout rel_slide_set;
+    private TextView name;
+    private TextView locationText;
+    private TextView temperatureText;
+    private String city_name;
+    private String city_temperature;
 
     @Override
     @Nullable
@@ -84,6 +115,95 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+
+    private void getWeather(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String url = generateGetDiaryWeatherURL("Xiamen", "zh-Hans", "c", "1", "1");
+                    u = new URL(url);
+                    sb = new StringBuffer();
+                    String line = null;
+                    BufferedReader buffer = null;
+                    HttpURLConnection urlConn = (HttpURLConnection) u.openConnection();
+                    urlConn.setRequestMethod("GET");
+                    urlConn.setConnectTimeout(8000);
+                    urlConn.setReadTimeout(8000);
+                    buffer = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                    while ((line = buffer.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    Log.d("URL:",url);
+                } catch (SignatureException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String res =sb.toString();
+                try {
+                    JSONObject jsonObject = new JSONObject(res);
+                    JSONArray retdata = jsonObject.getJSONArray("results");
+                    JSONObject location = retdata.getJSONObject(0).optJSONObject("location");
+                    JSONObject daily = retdata.getJSONObject(0).optJSONObject("daily");
+                    city_name = retdata.getJSONObject(0).optJSONObject("location").optString("name");
+                    city_temperature = retdata.getJSONObject(0).optJSONObject("now").optString("temperature");
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            locationText.setText(city_name);
+                            temperatureText.setText(city_temperature);
+                        }
+                    });
+
+                    Log.d("URL:",retdata.getJSONObject(0).optJSONObject("location").optString("name"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.d("URL:",e.toString());
+                }
+            }
+        }).start();
+
+    }
+
+    public String generateGetDiaryWeatherURL(
+            String location,
+            String language,
+            String unit,
+            String start,
+            String days
+    )  throws SignatureException, UnsupportedEncodingException {
+        String timestamp = String.valueOf(new Date().getTime());
+        String params = "ts=" + timestamp + "&ttl=30&uid=" + TIANQI_API_USER_ID;
+        String signature = URLEncoder.encode(generateSignature(params, TIANQI_API_SECRET_KEY), "UTF-8");
+        return TIANQI_DAILY_WEATHER_URL + "?" + params + "&sig=" + signature + "&location=" + location + "&language=" + language + "&unit=" + unit + "&start=" + start + "&days=" + days;
+    }
+
+
+    private String generateSignature(String data, String key) throws SignatureException {
+        String result;
+        try {
+            // get an hmac_sha1 key from the raw key bytes
+            SecretKeySpec signingKey = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA1");
+            // get an hmac_sha1 Mac instance and initialize with the signing key
+            Mac mac = Mac.getInstance("HmacSHA1");
+            mac.init(signingKey);
+            // compute the hmac on input data bytes
+            byte[] rawHmac = mac.doFinal(data.getBytes("UTF-8"));
+            result = new sun.misc.BASE64Encoder().encode(rawHmac);
+        }
+        catch (Exception e) {
+            throw new SignatureException("Failed to generate HMAC : " + e.getMessage());
+        }
+        return result;
+    }
+
+
     private void initView(View view) {
         lst_slide = (XXListView) view.findViewById(R.id.lst_slide);
         // 夜间
@@ -96,6 +216,12 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
         // 设置
         rel_slide_set = (RelativeLayout) view.findViewById(R.id.rel_slide_set);
         rel_slide_set.setOnClickListener(this);
+        locationText = (TextView) view.findViewById(R.id.txt_location);
+        temperatureText = (TextView) view.findViewById(R.id.txt_wendu);
+        //姓名
+        name = (TextView) view.findViewById(R.id.txt_slide_nick);
+        name.setText(EMClient.getInstance().getCurrentUser());
+        getWeather();
     }
 
     @Override
