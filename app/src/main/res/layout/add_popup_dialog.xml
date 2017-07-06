@@ -161,7 +161,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:scaleType="fitCenter"
-                android:background="@drawable/pupop_fast_money" />
+                android:background="@drawable/exit" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -3,6 +3,7 @@
     package="com.example.minions.im">
 
     <!-- Required -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -34,7 +35,7 @@
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1146170627115734#test" />
+            android:value="1146170627115734#im" />
         <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
@@ -153,6 +154,7 @@
             android:launchMode="singleTask" />
         <activity android:name="com.GroupControl" />
         <activity android:name=".activity.GroupManegerActivity"></activity>
+        <activity android:name="com.AddMember" android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

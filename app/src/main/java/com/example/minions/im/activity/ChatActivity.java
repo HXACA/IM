@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.example.minions.im.R;
-import com.example.minions.im.fragment.newEaseChatFragment;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseChatFragment;
@@ -97,7 +96,7 @@ public class ChatActivity extends FragmentActivity {
 
     private void initData() {
         //创建一个回话的fragment
-        newEaseChatFragment = new newEaseChatFragment();
+        newEaseChatFragment = new EaseChatFragment();
         mHxid = getIntent().getStringExtra(EaseConstant.EXTRA_USER_ID);
         newEaseChatFragment.setArguments(getIntent().getExtras());
         /// /替换fragment

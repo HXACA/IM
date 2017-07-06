@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.minions.im.R;
-import com.hyphenate.EMConnectionListener;
-import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.util.NetUtils;
 
 import cn.bmob.v3.Bmob;
 
@@ -24,9 +22,10 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        Bmob.initialize(this,"d47808a0512885e466e42f5ff8b0e981");
+        Bmob.initialize(this, "d47808a0512885e466e42f5ff8b0e981");
         createBase();
-        if (!EMClient.getInstance().isLoggedInBefore()){
+        Log.d("Splash","1"+EMClient.getInstance().getCurrentUser()+(EMClient.getInstance().isLoggedInBefore()?"1":"0"));
+        if (!EMClient.getInstance().isLoggedInBefore() || EMClient.getInstance().getCurrentUser()==null) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -34,8 +33,8 @@ public class SplashActivity extends Activity {
                     startActivity(new Intent().setClass(SplashActivity.this, LoginActivty.class));
                     finish();
                 }
-            }, 1000);
-        }else{
+            }, 3000);
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -45,7 +44,7 @@ public class SplashActivity extends Activity {
                 }
             }, 0);
         }
-        EMClient.getInstance().addConnectionListener(new MyConnectionListener());}
+    }
 
     private void createBase() {
         db = openOrCreateDatabase("User.db", Context.MODE_PRIVATE, null);
@@ -69,46 +68,11 @@ public class SplashActivity extends Activity {
     }
 
 
-    private class MyConnectionListener implements EMConnectionListener {
-        @Override
-        public void onConnected() {
-            isshow=false;
-        }
-        @Override
-        public void onDisconnected(final int error) {
-            if(isshow==false){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(error == EMError.USER_REMOVED){
-                            // 显示帐号已经被移除
-                        }else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
-                            // 显示帐号在其他设备登录
-                            showResult("您的账号在别处登录");
-                            isshow = true;
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    EMClient.getInstance().logout(true);
-                                    Intent intent = new Intent(getApplicationContext(),LoginActivty.class);
-                                    startActivity(intent);
-                                }
-                            }).start();
-                        } else {
-                            if (NetUtils.hasNetwork(SplashActivity.this)){
-                                //连接不到聊天服务器
-                            }
-                            else{
-                                //当前网络不可用，请检查网络设置
-                                isshow=true;
-                                showResult("无法连接网络！");
-                            }
-                        }
-                    }
-                });
-            }
-
-        }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        onCreate(null);
     }
 }
+
 

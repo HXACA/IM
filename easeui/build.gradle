@@ -49,4 +49,5 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
     compile 'cn.bmob.android:http-legacy:1.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

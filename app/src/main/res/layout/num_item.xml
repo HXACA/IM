@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/app_logo"
+            android:layout_weight="0.5"
+            android:id="@+id/call_user_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="昵称"
+            android:layout_weight="6"
+            android:id="@+id/call_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/call_phone"
+            android:src="@drawable/call_phone"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/call_message"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/call_message"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

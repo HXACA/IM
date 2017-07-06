@@ -61,9 +61,11 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
     private ImageButton GroupMangers;
     private String toChatName;
     private LinearLayout ownerShow;
+    private LinearLayout NoShowGroup;
     private TextView groupName;
     private Switch Noshow;
     private Button dissolve;
+    private ImageButton allmember;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Noshow.setVisibility(View.VISIBLE);
+                               NoShowGroup.setVisibility(View.VISIBLE);
                             }
                         });
                     }
@@ -204,7 +206,8 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
             }
         });
         Noshow = (Switch) findViewById(R.id.switch2);
-        Noshow.setVisibility(View.INVISIBLE);
+        NoShowGroup = (LinearLayout) findViewById(R.id.NoshowGroup);
+        NoShowGroup.setVisibility(View.INVISIBLE);
         groupName = (TextView) findViewById(R.id.group_name);
         toChatName=getIntent().getStringExtra("name");
         GroupNotice = (ImageButton) findViewById(R.id.btn_notice);
@@ -214,7 +217,16 @@ public class GroupDetailActivity extends Activity implements View.OnClickListene
         ownerShow = (LinearLayout) findViewById(R.id.ownershow);
         ownerShow.setVisibility(View.INVISIBLE);
         dissolve = (Button) findViewById(R.id.dissolve);
-
+        allmember = (ImageButton) findViewById(R.id.btn_member);
+        allmember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(GroupDetailActivity.this,GroupControl.class);
+                intent.putExtra("name",toChatName);
+                intent.putExtra("type",6);
+                startActivity(intent);
+            }
+        });
     }
 
 

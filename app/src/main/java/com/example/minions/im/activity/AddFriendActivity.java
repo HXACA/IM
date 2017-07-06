@@ -52,7 +52,7 @@ public class AddFriendActivity extends Activity{
         textView = (TextView) findViewById(R.id.friend_nickname);
         textView.setText(toName);
         add = (Button) findViewById(R.id.btn_add);
-        delete = (Button)findViewById(R.id.button3);
+        delete = (Button)findViewById(R.id.button33);
         delete.setVisibility(View.INVISIBLE);
         add.setVisibility(View.INVISIBLE);
         new Thread(new Runnable() {

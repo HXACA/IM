@@ -80,7 +80,46 @@ public class GroupControl extends Activity{
             case 5://删除
                 deleteMember();
                 break;
+            case 6:
+                showAll();
+                break;
         }
+    }
+
+    private void showAll() {
+        group = EMClient.getInstance().groupManager().getGroup(groupId);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    group = EMClient.getInstance().groupManager().getGroupFromServer(groupId);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        setContentView(R.layout.delete);
+        EaseTitleBar titleBar = (EaseTitleBar) findViewById(R.id.delete_titleBar);
+        initial(titleBar,"群成员列表");
+        titleBar.setRightImageResource(R.drawable.plus);
+        titleBar.setRightLayoutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GroupControl.this,AddMember.class);
+                intent.putExtra("groupId",groupId);
+                startActivity(intent);
+            }
+        });
+        final ListView lv = (ListView) findViewById(R.id.deleteList);
+        all = group.getMembers();
+        for(int i=0;i<all.size();i++){
+            if(all.get(i).equals(group.getOwner())){
+                all.set(i,group.getOwner()+"(群主大人)");
+                break;
+            }
+        }
+        Deleteadapter adapter = new Deleteadapter(GroupControl.this,R.layout.delete_item,all);
+        lv.setAdapter(adapter);
     }
 
     private void deleteMember() {
@@ -165,10 +204,27 @@ public class GroupControl extends Activity{
         setContentView(R.layout.notice);
         EaseTitleBar titleBar = (EaseTitleBar) findViewById(R.id.notice_title_bar);
         Button submit = (Button) findViewById(R.id.notice_submit);
+        group = EMClient.getInstance().groupManager().getGroup(groupId);
+        final EditText text = (EditText) findViewById(R.id.noticeEdit);
+        submit.setVisibility(View.INVISIBLE);
+        text.setVisibility(View.INVISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    group = EMClient.getInstance().groupManager().getGroupFromServer(groupId);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        if(EMClient.getInstance().getCurrentUser().equals(group.getOwner())){
+            submit.setVisibility(View.VISIBLE);
+            text.setVisibility(View.VISIBLE);
+        }
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText text = (EditText) findViewById(R.id.noticeEdit);
                 String msg = text.getText().toString();
                 if(msg==null || msg.trim().length()<=0){
                     Toast.makeText(GroupControl.this, "公告不得为空！", Toast.LENGTH_SHORT).show();

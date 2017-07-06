@@ -40,16 +40,19 @@ import java.util.List;
 public class SearchFriendActivity extends Activity{
     private EditText num;
     private Button button;
+    private Button button2;
+    private String fnum = null;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_friend);
         num = (EditText) findViewById(R.id.findNum);
         button = (Button) findViewById(R.id.searchFriend);
+      button2 = (Button) findViewById(R.id.searchGroup);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String fnum = num.getText().toString().trim();
+               fnum = num.getText().toString().trim();
                 if(fnum==null || fnum.length()<=0){
                     Toast.makeText(SearchFriendActivity.this, "号码不得为空！", Toast.LENGTH_SHORT).show();
                     return;
@@ -89,6 +92,35 @@ public class SearchFriendActivity extends Activity{
                     }
                 }).start();
 
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fnum = num.getText().toString().trim();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            EMClient.getInstance().groupManager().applyJoinToGroup(fnum, "求加入");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SearchFriendActivity.this, "已向"+fnum+"发送了加群申请！", Toast.LENGTH_SHORT).show();
+                                    onBackPressed();
+                                }
+                            });
+                        } catch (final HyphenateException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SearchFriendActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }

@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -106,13 +103,21 @@
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="通话记录"
+               android:text="通话列表"
                android:layout_marginLeft="16dp"
                android:layout_marginTop="4dp"
-               /> 
-               
-           
+               />
         </LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <ListView
+            android:id="@+id/user_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
     </ScrollView>
 
 </com.example.minions.im.view.RefreshableView>

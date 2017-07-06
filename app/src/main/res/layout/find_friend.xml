@@ -92,21 +92,34 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1.2">
+
         <Button
-            android:text="查    找"
-            android:gravity="center"
-            android:background="@drawable/button3"
-            android:textColor="@color/white"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="27dp"
-            android:layout_marginRight="67dp"
-            android:layout_marginLeft="67dp"
+            android:id="@+id/searchFriend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchFriend" />
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button1"
+            android:gravity="center"
+            android:text="找 人"
+            android:textColor="@color/white" />
+
+        <Button
+            android:text="找 群"
+            android:gravity="center"
+            android:background="@drawable/button1"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchGroup" />
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

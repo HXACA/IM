@@ -1,6 +1,8 @@
 package com.example.minions.im.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,14 +19,17 @@ import android.widget.TextView;
 
 import com.example.minions.im.R;
 import com.example.minions.im.activity.DressUpActivity;
+import com.example.minions.im.activity.LoginActivty;
 import com.example.minions.im.activity.MyFileActivity;
 import com.example.minions.im.activity.MyPhotoActivity;
 import com.example.minions.im.activity.QQMoneyActivity;
 import com.example.minions.im.activity.SaveActivity;
 import com.example.minions.im.activity.VIPActivity;
 import com.example.minions.im.adapter.SlideMenuAdapter;
+import com.example.minions.im.view.CircleImageView;
 import com.example.minions.im.view.XXListView;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.adapter.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +53,12 @@ import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
+
 /**
  * Created by LinYong on 2017/6/30.
  */
@@ -68,6 +79,7 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
     private TextView temperatureText;
     private String city_name;
     private String city_temperature;
+    private CircleImageView userAvatar;
 
     @Override
     @Nullable
@@ -78,6 +90,21 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
                 R.layout.fragment_slide, null);
         initView(view);
         lst_slide.setAdapter(new SlideMenuAdapter(getActivity(), getData()));
+        TextView exit = (TextView) view.findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        EMClient.getInstance().logout(true);
+                        Intent intent = new Intent(getActivity(),LoginActivty.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                }).start();
+            }
+        });
         lst_slide.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -220,7 +247,32 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
         temperatureText = (TextView) view.findViewById(R.id.txt_wendu);
         //姓名
         name = (TextView) view.findViewById(R.id.txt_slide_nick);
-        name.setText(EMClient.getInstance().getCurrentUser());
+        userAvatar = (CircleImageView) view.findViewById(R.id.civ_user_icon);
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereEqualTo("telephone", EMClient.getInstance().getCurrentUser());
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null) {
+                    User user = list.get(0);
+                    name.setText(user.getNickName());
+                    final BmobFile bmobFile = user.getAvatar();
+                    bmobFile.download(new DownloadFileListener() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            Bitmap bm = BitmapFactory.decodeFile(s);
+                            userAvatar.setImageBitmap(bm);
+                        }
+
+                        @Override
+                        public void onProgress(Integer integer, long l) {
+
+                        }
+                    });
+                }
+            }
+        });
+
         getWeather();
     }
 

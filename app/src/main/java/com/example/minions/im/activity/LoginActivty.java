@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class LoginActivty extends Activity implements View.OnClickListener {
     private LineEditText name;
     private LineEditText pass;
     private Button button;
+    private String objectId;
 
     public static String getPassword() {
         return password;
@@ -87,14 +89,14 @@ public class LoginActivty extends Activity implements View.OnClickListener {
             case R.id.button:
                 final String user_name = name.getText().toString();
                 final String user_pass = pass.getText().toString();
-                if(user_name==null || user_name.length()<=0){
-                    Toast.makeText(this, "用户名不得为空！", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(user_name) || TextUtils.isEmpty(user_pass)) {
+                    showResult("用户名或密码不能为空！");
                     return;
                 }
-                if(user_pass==null || user_pass.length()<=0){
-                    Toast.makeText(this, "密码不得为空！", Toast.LENGTH_SHORT).show();
+                /*if (!Utils.isMobile(user_name)) {
+                    showResult("无效的手机号码！");
                     return;
-                }
+                }*/
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -105,6 +107,8 @@ public class LoginActivty extends Activity implements View.OnClickListener {
                                 EMClient.getInstance().groupManager().loadAllGroups();
                                 EMClient.getInstance().chatManager().loadAllConversations();
                                 showResult("登陆成功！");
+
+                                //更改用户状态
                                 Intent intent = new Intent(LoginActivty.this,MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -125,6 +129,7 @@ public class LoginActivty extends Activity implements View.OnClickListener {
 
         }
     }
+
 
     private void showResult(final String res) {
         runOnUiThread(new Runnable() {

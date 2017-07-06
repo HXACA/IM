@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,17 +41,28 @@ import com.example.minions.im.runtimepermissions.PermissionsResultAction;
 import com.example.minions.im.utils.FragmentUtil;
 import com.example.minions.im.view.AddPupopWindow;
 import com.example.minions.im.view.CircleImageView;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
+import com.hyphenate.EMError;
+import com.hyphenate.EMGroupChangeListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.adapter.User;
 import com.hyphenate.easeui.ui.EaseGroupRemoveListener;
 import com.hyphenate.easeui.ui.VideoCallActivity;
 import com.hyphenate.exceptions.HyphenateException;
+import com.hyphenate.util.NetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 import edu.zx.slidingmenu.SlidingMenu;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -77,6 +91,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     // 定义一个变量，来标识是否退出
     private static boolean isExit = false;
 
+
+    //用户数据库ID
+    private String objectId;
+
     private AddPupopWindow menuWindow;
     private long startTime, endTime;
     Handler mHandler = new Handler() {
@@ -95,6 +113,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+
+
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -107,9 +128,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        setUserAvatar();
         now=getIntent().getIntExtra("name",1);
         /**
          * 请求所有必要的权限----原理就是获取清单文件中申请的权限
@@ -125,7 +148,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //Toast.makeText(MainActivity.this, "Permission " + permission + " has been denied", Toast.LENGTH_SHORT).show();
             }
         });
-
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
         EMClient.getInstance().groupManager().addGroupChangeListener(new EaseGroupRemoveListener() {
             @Override
             public void onUserRemoved(String s, String s1) {
@@ -169,7 +192,71 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mSlidingMenu.setBehindCanvasTransformer(mTransformer);
 
 
+        EMClient.getInstance().groupManager().addGroupChangeListener(new EMGroupChangeListener() {
+            @Override
+            public void onInvitationReceived(final String groupId, String groupName, final String inviter, String reason) {
+                //接收到群组加入邀请
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            EMClient.getInstance().groupManager().acceptInvitation(groupId, inviter);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showResult("已接受群申请！");
+                                }
+                            });
+                        } catch (HyphenateException e) {
+                            e.printStackTrace();
+                            showResult(e.toString());
+                        }
+                    }
+                }).start();
 
+            }
+
+            @Override
+            public void onApplicationReceived(String s, String s1, String s2, String s3) {
+
+            }
+
+            @Override
+            public void onApplicationAccept(String s, String s1, String s2) {
+
+            }
+
+            @Override
+            public void onApplicationDeclined(String s, String s1, String s2, String s3) {
+
+            }
+
+            @Override
+            public void onInvitationAccepted(String groupId, String inviter, String reason) {
+                //群组邀请被同意
+            }
+
+            @Override
+            public void onInvitationDeclined(String groupId, String invitee, String reason) {
+                //群组邀请被拒绝
+            }
+
+            @Override
+            public void onUserRemoved(String s, String s1) {
+
+            }
+
+            @Override
+            public void onGroupDestroyed(String s, String s1) {
+
+            }
+
+            @Override
+            public void onAutoAcceptInvitationFromGroup(String groupId, String inviter, String inviteMessage) {
+                //接收邀请时自动加入到群组的通知
+            }
+
+        });
 
         EMClient.getInstance().contactManager().setContactListener(new EMContactListener() {
             @Override
@@ -271,6 +358,104 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tabPressedColor = getResources().getColor(R.color.tab_select_color);
         tabNormalColor = getResources().getColor(R.color.tab_uncelect_color);
         initView();
+
+    }
+
+    private void setUserAvatar() {
+        //获取头像
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereEqualTo("telephone", EMClient.getInstance().getCurrentUser());
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null) {
+                    User user = list.get(0);
+                    final BmobFile bmobFile = user.getAvatar();
+                    objectId = user.getObjectId();
+                    Log.d("MainActivity", "用户id：" + objectId);
+                    if (bmobFile != null) {
+                        bmobFile.download(new DownloadFileListener() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                //Toast.makeText(MainActivity.this, "下载成功", Toast.LENGTH_SHORT).show();
+                                Log.d("MainActivity", "图片路径：" + s);
+                                Bitmap bm = BitmapFactory.decodeFile(s);
+                                img_click.setImageBitmap(bm);
+                            }
+
+                            @Override
+                            public void onProgress(Integer integer, long l) {
+
+                            }
+                        });
+                    }
+                    user.setState(1);
+                    user.update(objectId, new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                Log.d("Login", "用户已上线");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
+    private class MyConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+
+        }
+        @Override
+        public void onDisconnected(final int error) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(error == EMError.USER_REMOVED){
+                        // 显示帐号已经被移除
+                    }else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                        showResult("你的账号在别处登录了！");
+                        // 显示帐号在其他设备登录
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        EMClient.getInstance().logout(false, new EMCallBack() {
+                                            @Override
+                                            public void onSuccess() {
+                                               // showResult("success");
+                                            }
+
+                                            @Override
+                                            public void onError(int i, String s) {
+                                                Log.d("Splash",s);
+                                            }
+
+                                            @Override
+                                            public void onProgress(int i, String s) {
+
+                                            }
+                                        });
+                                    }
+                                }).start();
+                        Log.d("Splash",EMClient.getInstance().isLoggedInBefore()?"99":"-99");
+                                Intent intent = new Intent(getApplicationContext(),LoginActivty.class);
+                                startActivity(intent);
+                                finish();
+                    } else {
+                        if (NetUtils.hasNetwork(MainActivity.this)){
+                            //连接不到聊天服务器
+                        }
+                        else{
+                            //当前网络不可用，请检查网络设置
+                            showResult("无法连接网络！");
+                        }
+                    }
+                }
+            });
+        }
 
     }
 
@@ -476,7 +661,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 txt_head_msg.setBackgroundResource(R.drawable.left_shape2);
                 txt_head_call.setTextColor(getResources().getColor(R.color.white));
                 txt_head_call.setBackgroundResource(R.drawable.right_shape1);
-
                 fragmentArry.remove(0);
                 fragmentArry.add(0, new CallFragment());
                 replace(R.id.mainFragment,
