@@ -86,6 +86,9 @@
             android:name=".activity.RegisterActivity"
             android:launchMode="singleTask" />
         <activity
+            android:name=".activity.GameActivity"
+            android:launchMode="singleTask" />
+        <activity
             android:name=".activity.SplashActivity"
             android:launchMode="singleTask">
             <intent-filter>

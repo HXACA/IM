@@ -126,7 +126,7 @@
                     android:id="@+id/txt_dynamic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="动态"
+                    android:text="娱乐"
                     android:textColor="@color/tab_uncelect_color" />
             </LinearLayout>
 

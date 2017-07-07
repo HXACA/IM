@@ -40,6 +40,7 @@ import com.hyphenate.chat.EMMessage.ChatType;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.R;
+import com.hyphenate.easeui.adapter.User;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseEmojiconGroupEntity;
@@ -64,6 +65,10 @@ import com.hyphenate.util.PathUtil;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * you can new an EaseChatFragment to use or you can inherit it to expand.
@@ -243,6 +248,24 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         titleBar.setTitle(toChatUsername);
         if (chatType == EaseConstant.CHATTYPE_SINGLE) {
             // set title
+            BmobQuery<User> query = new BmobQuery<>();
+            query.addWhereEqualTo("telephone", toChatUsername);
+            query.findObjects(new FindListener<User>() {
+                @Override
+                public void done(List<User> list, BmobException e) {
+                    if (e == null && list.size()>0) {
+                        User user = list.get(0);
+                        String nickName = user.getNickName();
+                        int state = user.getState();
+                        String string;
+                        if(state==1)
+                            string="在线";
+                        else
+                            string="离线";
+                        titleBar.setTitle(nickName + "("+string+")");
+                    }
+                }
+            });
             if(EaseUserUtils.getUserInfo(toChatUsername) != null){
                 EaseUser user = EaseUserUtils.getUserInfo(toChatUsername);
                 if (user != null) {

@@ -2,6 +2,8 @@ package com.example.minions.im.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
@@ -18,6 +20,15 @@ import com.example.minions.im.view.CircleImageView;
 import com.example.minions.im.view.PinnedHeaderExpandableListView;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.adapter.User;
+
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
 
 public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter implements PinnedHeaderExpandableListView.HeaderAdapter {
 	private String[][] childrenData;
@@ -54,9 +65,42 @@ public class PinnedHeaderExpandableAdapter extends  BaseExpandableListAdapter im
         } else {  
             view = createChildrenView();  
         }
-		CircleImageView img = (CircleImageView) view.findViewById(R.id.groupIcon);
-        TextView text1 = (TextView)view.findViewById(R.id.childto);
-        text1.setText(childrenData[groupPosition][childPosition]);
+		final CircleImageView img = (CircleImageView) view.findViewById(R.id.groupIcon);
+        final TextView text1 = (TextView)view.findViewById(R.id.childto);
+		BmobQuery<User> query = new BmobQuery<>();
+		Log.d("FriendActivity", "friendId :" + childrenData[groupPosition][childPosition]);
+		query.addWhereEqualTo("telephone", childrenData[groupPosition][childPosition]);
+		query.findObjects(new FindListener<User>() {
+			@Override
+			public void done(List<User> list, BmobException e) {
+				if (e == null) {
+					final User user = list.get(0);
+					final BmobFile bmobFile = user.getAvatar();
+					bmobFile.download(new DownloadFileListener() {
+						@Override
+						public void done(String s, BmobException e) {
+							Log.d("FriendActivity", "下载成功");
+							Log.d("FriendActivity", "图片路径：" + s);
+							Bitmap bm = BitmapFactory.decodeFile(s);
+							img.setImageBitmap(bm);
+							int state = user.getState();
+							String string;
+							if(state==1)
+								string="在线";
+							else
+								string="离线";
+							text1.setText(user.getNickName() + "(" + string + ")");
+						}
+
+						@Override
+						public void onProgress(Integer integer, long l) {
+
+						}
+					});
+				}
+			}
+		});
+        //text1.setText(childrenData[groupPosition][childPosition]);
 		text1.setOnClickListener(new View.OnClickListener() {
 
 			@Override

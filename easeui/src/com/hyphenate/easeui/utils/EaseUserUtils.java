@@ -8,8 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.adapter.User;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -98,8 +96,27 @@ public class EaseUserUtils {
     /**
      * set user's nickname
      */
-    public static void setUserNick(String username, TextView textView) {
-        if (textView != null) {
+    public static void setUserNick(String username, final TextView textView) {
+
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereEqualTo("telephone", username);
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null && list.size()>0) {
+                    User user = list.get(0);
+                    String nickName = user.getNickName();
+                    int state = user.getState();
+                    String string;
+                    if(state==1)
+                        string="在线";
+                    else
+                        string="离线";
+                    textView.setText(nickName + "("+string+")");
+                }
+            }
+        });
+        if (textView.getText()== null) {
             EaseUser user = getUserInfo(username);
             if (user != null && user.getNick() != null) {
                 textView.setText(user.getNick());

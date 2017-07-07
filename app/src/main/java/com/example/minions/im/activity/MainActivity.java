@@ -614,7 +614,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 lin_middle.setVisibility(View.GONE);
                 txt_title.setVisibility(View.VISIBLE);
-                txt_title.setText("动态");
+                txt_title.setText("娱乐");
                 txt_right.setText("更多");
                 txt_right.setVisibility(View.VISIBLE);
                 img_head_right.setVisibility(View.GONE);

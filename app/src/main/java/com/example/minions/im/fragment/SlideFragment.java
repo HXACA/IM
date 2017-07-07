@@ -58,6 +58,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by LinYong on 2017/6/30.
@@ -80,7 +81,9 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
     private String city_name;
     private String city_temperature;
     private CircleImageView userAvatar;
+    private TextView user_state;
 
+    private String objectId;
     @Override
     @Nullable
     public View onCreateView(LayoutInflater inflater,
@@ -90,7 +93,19 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
                 R.layout.fragment_slide, null);
         initView(view);
         lst_slide.setAdapter(new SlideMenuAdapter(getActivity(), getData()));
+        user_state = (TextView) view.findViewById(R.id.user_state);
         TextView exit = (TextView) view.findViewById(R.id.exit);
+        BmobQuery<User>query = new BmobQuery<>();
+        query.addWhereEqualTo("telephone",EMClient.getInstance().getCurrentUser());
+        query.setLimit(50);
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if(e==null && list.size()>0){
+                    user_state.setText(list.get(0).getState()==1?"在线":"离线");
+                }
+            }
+        });
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +113,27 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
                         EMClient.getInstance().logout(true);
+                        BmobQuery<User> query = new BmobQuery<>();
+                        query.addWhereEqualTo("telephone", EMClient.getInstance().getCurrentUser());
+                        query.findObjects(new FindListener<User>() {
+                            @Override
+                            public void done(List<User> list, BmobException e) {
+                                if (e == null) {
+                                    User user = list.get(0);
+                                    objectId = user.getObjectId();
+                                    Log.d("MainActivity", "用户id：" + objectId);
+                                    user.setState(0);
+                                    user.update(objectId, new UpdateListener() {
+                                        @Override
+                                        public void done(BmobException e) {
+                                            if (e == null) {
+                                                Log.d("Login", "用户已下线");
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
                         Intent intent = new Intent(getActivity(),LoginActivty.class);
                         startActivity(intent);
                         getActivity().finish();

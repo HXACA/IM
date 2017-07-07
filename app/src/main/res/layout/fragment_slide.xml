@@ -40,12 +40,11 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/img_slide_score"
+                <TextView
+                    android:id="@+id/user_state"
                     android:layout_width="60dp"
                     android:layout_height="15dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/ic_score" />
+                    android:layout_marginTop="4dp" />
             </LinearLayout>
 
             <ImageView

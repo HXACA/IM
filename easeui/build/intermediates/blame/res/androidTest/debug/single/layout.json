@@ -4,12 +4,12 @@
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video_call.xml",
-        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video_call.xml"
-    },
-    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_location.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM (1)\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_location.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video_call.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video_call.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_chat.xml",
@@ -44,12 +44,12 @@
         "source": "C:\\Users\\KING\\.android\\build-cache\\4e986ea0b8d0307771535d3847f59b3f521ad524\\output\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
-        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_message.xml",
-        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_message.xml"
-    },
-    {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_contact_list.xml",
         "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_contact_list.xml"
+    },
+    {
+        "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_message.xml",
+        "source": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_message.xml"
     },
     {
         "merged": "E:\\Users\\KING\\AndroidStudioProjects\\IM\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_emojicon_tab_bar.xml",
